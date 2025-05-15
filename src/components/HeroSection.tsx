@@ -1,15 +1,10 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
-
 const HeroSection = () => {
-  return (
-    <section className="bg-gradient-to-br from-primary-700 to-primary-900 map-pattern text-white py-20">
+  return <section className="bg-gradient-to-br from-primary-700 to-primary-900 map-pattern text-white py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-heading">
-            GIS & Geospatial Engineer
-          </h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-heading">GIS &  Eng</h1>
           <p className="text-xl md:text-2xl mb-8 text-primary-100 max-w-2xl mx-auto">
             Transforming spatial data into actionable insights through custom analysis, automation, and visualization.
           </p>
@@ -23,8 +18,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
