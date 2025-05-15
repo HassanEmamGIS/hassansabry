@@ -1,6 +1,7 @@
 
 import React from "react";
 import { usePortfolio } from "../context/PortfolioContext";
+import { toast } from "@/hooks/use-toast";
 
 const Footer = () => {
   const { aboutInfo } = usePortfolio();
@@ -68,7 +69,10 @@ const Footer = () => {
               <button 
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
-                  toast.success("Portfolio URL copied to clipboard!");
+                  toast({
+                    title: "Success",
+                    description: "Portfolio URL copied to clipboard!"
+                  });
                 }}
                 className="bg-earth-700 hover:bg-earth-600 p-2 rounded-full transition-colors"
                 aria-label="Copy Link"
