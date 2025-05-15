@@ -5,7 +5,7 @@ import { usePortfolio } from "@/context/PortfolioContext";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
@@ -18,7 +18,10 @@ const HeroSection = () => {
     e.preventDefault();
     updateAboutInfo(editedInfo);
     setIsEditDialogOpen(false);
-    toast.success("About information updated successfully");
+    toast({
+      title: "Success",
+      description: "About information updated successfully",
+    });
   };
   
   const getInitials = (name: string = "GIS Expert") => {
