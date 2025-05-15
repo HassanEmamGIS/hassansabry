@@ -1,7 +1,7 @@
 
 import React from "react";
 import { usePortfolio } from "../context/PortfolioContext";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "@/components/ui/use-toast";
 
 const Footer = () => {
   const { aboutInfo } = usePortfolio();
