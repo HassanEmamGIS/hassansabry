@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -13,6 +13,7 @@ const HeroSection = () => {
   const { aboutInfo, isAdmin, updateAboutInfo } = usePortfolio();
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editedInfo, setEditedInfo] = useState(aboutInfo);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const handleEditSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +31,26 @@ const HeroSection = () => {
       .map((n) => n[0])
       .join("")
       .toUpperCase();
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target?.result) {
+        setEditedInfo({
+          ...editedInfo,
+          photo: event.target.result as string
+        });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
   };
 
   return (
@@ -94,16 +115,49 @@ const HeroSection = () => {
                   required
                 />
               </div>
+              
+              {/* Image Upload Section */}
               <div className="grid w-full gap-1.5">
-                <Label htmlFor="photo">Photo URL</Label>
-                <Input 
-                  id="photo"
-                  value={editedInfo.photo}
-                  onChange={(e) => setEditedInfo({...editedInfo, photo: e.target.value})}
-                  placeholder="URL to your professional photo"
-                  required
-                />
+                <Label htmlFor="photo">Profile Image</Label>
+                <div className="flex items-center gap-2">
+                  <div className="w-20 h-20 rounded-md overflow-hidden bg-gray-100">
+                    {editedInfo.photo ? (
+                      <img 
+                        src={editedInfo.photo} 
+                        alt="Preview" 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500">
+                        No Image
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      onClick={triggerFileInput}
+                    >
+                      Upload Image
+                    </Button>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                    />
+                    <Input 
+                      id="photo"
+                      value={typeof editedInfo.photo === 'string' ? editedInfo.photo : ''}
+                      onChange={(e) => setEditedInfo({...editedInfo, photo: e.target.value})}
+                      placeholder="or enter URL"
+                    />
+                  </div>
+                </div>
               </div>
+              
               <Button type="submit" className="w-full">Save Changes</Button>
             </form>
           </DialogContent>
