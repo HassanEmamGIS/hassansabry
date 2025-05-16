@@ -12,7 +12,10 @@ import { Label } from "@/components/ui/label";
 const HeroSection = () => {
   const { aboutInfo, isAdmin, updateAboutInfo } = usePortfolio();
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [editedInfo, setEditedInfo] = useState(aboutInfo);
+  const [editedInfo, setEditedInfo] = useState({
+    ...aboutInfo,
+    photo: "/lovable-uploads/d83efba8-0064-4b58-985a-1bcf24c61377.png"
+  });
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const handleEditSubmit = (e: React.FormEvent) => {
@@ -53,6 +56,16 @@ const HeroSection = () => {
     fileInputRef.current?.click();
   };
 
+  // Update the aboutInfo with the new image on component mount
+  React.useEffect(() => {
+    if (isAdmin) {
+      updateAboutInfo({
+        ...aboutInfo,
+        photo: "/lovable-uploads/d83efba8-0064-4b58-985a-1bcf24c61377.png"
+      });
+    }
+  }, []);
+
   return (
     <section className="bg-gradient-to-br from-primary-700 to-primary-900 map-pattern text-white py-20">
       <div className="container mx-auto px-4">
@@ -60,7 +73,11 @@ const HeroSection = () => {
           {/* Profile Image */}
           <div className="md:w-1/3 relative">
             <Avatar className="w-64 h-64 border-4 border-white/30 mx-auto">
-              <AvatarImage src={aboutInfo.photo} alt="Profile Photo" className="object-cover" />
+              <AvatarImage 
+                src="/lovable-uploads/d83efba8-0064-4b58-985a-1bcf24c61377.png" 
+                alt="Profile Photo" 
+                className="object-cover"
+              />
               <AvatarFallback className="text-4xl bg-primary-200 text-primary-800">
                 {getInitials()}
               </AvatarFallback>
