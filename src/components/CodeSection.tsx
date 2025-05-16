@@ -237,7 +237,7 @@ const CodeSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {codeSnippets.map((snippet) => (
-            <div key={snippet.id} className="code-card group overflow-hidden rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300">
+            <div key={snippet.id} className="code-card group relative">
               <div className="relative">
                 {snippet.imageUrl && (
                   <div className="h-48 overflow-hidden">
@@ -269,17 +269,9 @@ const CodeSection = () => {
                     </>
                   )}
                 </div>
-
-                <div className="absolute top-2 left-2">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    snippet.category === "ArcGIS Pro" ? "bg-blue-100 text-blue-800" : "bg-green-100 text-green-800"
-                  }`}>
-                    {snippet.category}
-                  </span>
-                </div>
               </div>
               
-              <CardContent className="p-6">
+              <CardContent className="p-6 relative">
                 <h3 className="text-xl font-semibold mb-2">{snippet.title}</h3>
                 <p className="text-earth-600 mb-4 line-clamp-3">{snippet.description}</p>
                 <div className="flex flex-wrap gap-3">
@@ -305,6 +297,15 @@ const CodeSection = () => {
                     </svg>
                     Drive Files
                   </a>
+                </div>
+                
+                {/* New professionally styled category badge at bottom right */}
+                <div className="badge-wrapper">
+                  <span className={`category-badge ${
+                    snippet.category === "ArcGIS Pro" ? "category-badge-arcgis" : "category-badge-qgis"
+                  }`}>
+                    {snippet.category}
+                  </span>
                 </div>
               </CardContent>
             </div>

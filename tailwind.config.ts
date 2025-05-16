@@ -88,6 +88,34 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// New professional color palette
+				pro: {
+					arcgis: {
+						light: '#E6F0FF',
+						DEFAULT: '#0079C1',
+						dark: '#005E96'
+					},
+					qgis: {
+						light: '#E6F9F2',
+						DEFAULT: '#589632',
+						dark: '#3F6B24'
+					},
+					teal: {
+						light: '#E6FAF8',
+						DEFAULT: '#14B8A6',
+						dark: '#0F766E'
+					},
+					indigo: {
+						light: '#EEF2FF',
+						DEFAULT: '#6366F1',
+						dark: '#4338CA'
+					},
+					amber: {
+						light: '#FFFBEB',
+						DEFAULT: '#F59E0B',
+						dark: '#B45309'
+					}
 				}
 			},
 			borderRadius: {

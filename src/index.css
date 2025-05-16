@@ -16,24 +16,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 217.2 91.2% 59.8%;
+    --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 215 16% 47%;
+    --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 224 100% 68%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 224 76% 48%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 221 83% 53%;
 
     --radius: 0.5rem;
 
@@ -44,7 +44,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 221 83% 53%;
   }
 
   .dark {
@@ -82,7 +82,7 @@
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 221 83% 53%;
   }
 }
 
@@ -119,5 +119,26 @@
   
   .section-subtitle {
     @apply text-xl font-semibold mb-4 text-earth-700 font-heading;
+  }
+
+  /* Professional category badges */
+  .category-badge {
+    @apply px-3 py-1 rounded-md text-xs font-medium tracking-wide uppercase shadow-sm;
+  }
+
+  .category-badge-arcgis {
+    @apply bg-pro-arcgis-light text-pro-arcgis-dark border border-pro-arcgis/20;
+  }
+
+  .category-badge-qgis {
+    @apply bg-pro-qgis-light text-pro-qgis-dark border border-pro-qgis/20;
+  }
+  
+  .code-card {
+    @apply bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-xl overflow-hidden border border-gray-100;
+  }
+  
+  .badge-wrapper {
+    @apply absolute bottom-3 right-3 flex gap-2;
   }
 }
