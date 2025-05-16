@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Project, CodeSnippet, Service, AboutInfo } from "../types/portfolio";
 import { sampleProjects, sampleCodeSnippets, sampleServices, sampleAboutInfo } from "../data/sampleData";
@@ -8,7 +7,7 @@ export function usePortfolioActions() {
   const [codeSnippets, setCodeSnippets] = useState<CodeSnippet[]>(sampleCodeSnippets);
   const [services, setServices] = useState<Service[]>(sampleServices);
   const [aboutInfo, setAboutInfo] = useState<AboutInfo>(sampleAboutInfo);
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(true); // Set to true by default for immediate admin access
 
   // Project CRUD operations
   const addProject = (project: Omit<Project, "id">) => {
@@ -44,7 +43,24 @@ export function usePortfolioActions() {
     setCodeSnippets(codeSnippets.filter(s => s.id !== id));
   };
 
-  // Service and About Info update operations
+  // Service CRUD operations
+  const addService = (service: Omit<Service, "id">) => {
+    const newService = {
+      ...service,
+      id: Date.now().toString(),
+    };
+    setServices([...services, newService]);
+  };
+
+  const updateService = (service: Service) => {
+    setServices(services.map(s => s.id === service.id ? service : s));
+  };
+
+  const deleteService = (id: string) => {
+    setServices(services.filter(s => s.id !== id));
+  };
+
+  // About Info update operations
   const updateServices = (newServices: Service[]) => {
     setServices(newServices);
   };
@@ -69,6 +85,9 @@ export function usePortfolioActions() {
     addCodeSnippet,
     updateCodeSnippet,
     deleteCodeSnippet,
+    addService,
+    updateService,
+    deleteService,
     updateServices,
     updateAboutInfo,
   };

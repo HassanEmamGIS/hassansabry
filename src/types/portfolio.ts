@@ -15,6 +15,7 @@ export interface CodeSnippet {
   category: "ArcGIS Pro" | "QGIS";
   githubLink: string;
   driveLink: string;
+  imageUrl?: string; // Added optional image URL for code snippets
 }
 
 export interface Service {
@@ -22,6 +23,7 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
+  imageUrl?: string; // Added optional image URL for services
 }
 
 export interface AboutInfo {
@@ -48,6 +50,9 @@ export interface PortfolioContextType {
   addCodeSnippet: (snippet: Omit<CodeSnippet, "id">) => void;
   updateCodeSnippet: (snippet: CodeSnippet) => void;
   deleteCodeSnippet: (id: string) => void;
+  addService: (service: Omit<Service, "id">) => void;
+  updateService: (service: Service) => void;
+  deleteService: (id: string) => void;
   updateServices: (services: Service[]) => void;
   updateAboutInfo: (info: Partial<AboutInfo>) => void;
 }
